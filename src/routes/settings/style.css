@@ -1,0 +1,115 @@
+.settings h1 {
+	display: none;
+	text-align: center;
+}
+
+.settings h2 {
+	margin: 0;
+	margin-bottom: 0.5rem;
+}
+
+.settings h2:not(:first-of-type) {
+	margin-top: 3rem;
+}
+
+.settings p {
+	max-width: 460px;
+	text-align: center;
+	margin-top: 0;
+}
+
+@media screen and (max-width: 600px) {
+	.settings h1 {
+		display: block;
+	}
+}
+
+.settings {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 0 20px;
+}
+
+.category {
+	padding: 0.5rem;
+	border-radius: 1rem;
+	background: var(--light-bg);
+	padding-bottom: 0.5rem;
+	margin-bottom: 1rem;
+}
+
+.category h2 {
+	margin: 0;
+	text-align: center;
+}
+
+.category .time {
+	text-align: center;
+}
+
+.category button {
+	width: 100%;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	border-radius: 99999px;
+	border: none;
+	margin-top: 0.5rem;
+	background: var(--primary);
+	color: var(--primary-text);
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.editLink {
+	display: block;
+	padding: 0.5rem 3rem;
+	border-radius: 99999px;
+	border: none;
+	margin-top: 2rem;
+	background: var(--primary);
+	color: var(--primary-text);
+	font-weight: bold;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.importButton {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.75rem 1rem;
+	border-radius: 99999px;
+	border: none;
+	margin-top: 1rem;
+	background: var(--primary);
+	color: var(--primary-text);
+	font-weight: bold;
+	font-size: 1rem;
+	cursor: pointer;
+	line-height: 1;
+}
+
+.importButton input {
+	display: none;
+	visibility: hidden;
+	position: absolute;
+	top: -9999px;
+	left: -9999px;
+}
+
+.exportButton {
+	margin-top: 1rem;
+}
+
+.errorButton {
+	margin-top: 1rem;
+	--background: var(--error);
+	--color: var(--error-text);
+}

@@ -1,0 +1,25 @@
+.Text {
+	width: 100%;
+}
+
+.Text textarea {
+	width: 100%;
+	min-height: 100px;
+	font-size: 1rem;
+	background: var(--bg);
+	border: none;
+	border-radius: 1rem;
+	padding: 0.5rem;
+	resize: vertical;
+	color: var(--text);
+}
+
+.Text textarea::placeholder {
+	color: var(--text);
+	opacity: 0.8;
+}
+
+.Text button {
+	width: 100%;
+	margin-top: 1rem;
+}

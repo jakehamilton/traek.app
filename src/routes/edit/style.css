@@ -1,0 +1,184 @@
+.edit h1 {
+	display: none;
+	text-align: center;
+}
+
+.edit h2 {
+	font-size: 1.65rem;
+}
+
+@media screen and (max-width: 600px) {
+	.edit h1 {
+		display: block;
+	}
+}
+
+.edit {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 0px 20px;
+	min-height: 100%;
+	width: 100%;
+}
+
+.createCategory {
+	padding: 1rem;
+	border-radius: 1rem;
+	background: var(--light-bg);
+	width: 100%;
+	max-width: 400px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.createCategory .categoryName {
+	border: none;
+	background: transparent;
+	border-bottom: 1px solid var(--bg);
+	font-size: 1.35rem;
+	font-weight: bold;
+	text-align: center;
+	color: var(--text);
+	margin-top: 0.25rem;
+}
+
+.createCategory .categoryName:focus {
+	border-bottom: 1px solid var(--primary);
+	outline: none;
+}
+
+.createCategory .categoryName::placeholder {
+	color: var(--light-text);
+	opacity: 0.8;
+}
+
+.types {
+	background: var(--bg);
+	border-radius: 1rem;
+	margin-top: 1rem;
+	width: 100%;
+	overflow: hidden;
+}
+
+.types formset {
+	display: flex;
+}
+
+.types label {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	flex-grow: 1;
+	padding: 1rem 0.5rem;
+	cursor: pointer;
+	border-radius: 1rem;
+	gap: 0.25rem;
+}
+
+.types label.selected {
+	color: var(--primary-text);
+	background: var(--primary);
+}
+
+.types input {
+	display: none;
+	visibility: hidden;
+	position: absolute;
+	top: -9999px;
+	left: -9999px;
+}
+
+.createButton {
+	width: 100%;
+	margin-top: 1.5rem;
+}
+
+.empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-top: 4rem;
+	color: var(--light-text);
+	gap: 1rem;
+}
+
+.categories {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 2rem;
+	width: 100%;
+}
+
+.category {
+	flex-direction: row;
+	margin-top: 1rem;
+}
+
+.category .order {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	flex-shrink: 0;
+}
+
+.category .order button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.25rem;
+	width: 100%;
+	border-radius: 99999px;
+	border: none;
+	background: transparent;
+	color: var(--text);
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.category .order button[disabled] {
+	opacity: 0.5;
+}
+
+.category .content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 0 0.5rem;
+	flex-grow: 1;
+}
+
+.category .content .title {
+	font-size: 1.35rem;
+	font-weight: bold;
+}
+
+.category .content .type {
+	display: flex;
+	align-items: center;
+	gap: 0.35rem;
+	margin-top: 0.25rem;
+	font-size: 1rem;
+}
+
+.category .controls {
+	flex-shrink: 0;
+}
+
+.category .controls button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.5rem;
+	width: 100%;
+	border-radius: 99999px;
+	border: none;
+	background: var(--error);
+	color: var(--error-text);
+	font-weight: bold;
+	cursor: pointer;
+}

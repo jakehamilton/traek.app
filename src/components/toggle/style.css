@@ -1,0 +1,32 @@
+.Toggle {
+	width: 100%;
+}
+
+.Toggle formset {
+	display: flex;
+	width: 100%;
+}
+
+.Toggle formset label {
+	display: flex;
+	justify-content: center;
+	flex-grow: 1;
+	font-size: 1.5rem;
+	font-weight: bold;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	cursor: pointer;
+	border-radius: 1rem;
+}
+
+.Toggle formset label.active {
+	background: var(--primary);
+}
+
+.Toggle formset input {
+	display: none;
+	visibility: hidden;
+	position: absolute;
+	top: -9999px;
+	left: -9999px;
+}

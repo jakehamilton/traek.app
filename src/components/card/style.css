@@ -1,0 +1,9 @@
+.Card {
+	padding: 1rem;
+	border-radius: 1rem;
+	background: var(--light-bg);
+	width: 100%;
+	max-width: 400px;
+	display: flex;
+	flex-direction: column;
+}

@@ -1,0 +1,48 @@
+.home h1 {
+	display: none;
+	text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+	.home h1 {
+		display: block;
+	}
+}
+
+.home {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 0 20px;
+}
+
+.category:not(:first-child) {
+	margin-bottom: 1rem;
+}
+
+.empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-top: 4rem;
+	color: var(--light-text);
+	gap: 1rem;
+}
+
+.emptyText {
+	color: var(--light-text);
+}
+
+.editLink {
+	display: block;
+	padding: 0.5rem 3rem;
+	border-radius: 99999px;
+	border: none;
+	margin-top: 2rem;
+	background: var(--primary);
+	color: var(--primary-text);
+	font-weight: bold;
+	cursor: pointer;
+	text-decoration: none;
+}
