@@ -1,21 +1,18 @@
-import { h } from "preact";
-import { useMemo, useState } from "preact/hooks";
+import { useMemo } from "preact/hooks";
 import { category, entries, entry } from "../../lib/store";
 import style from "./style.css";
 import { startOfWeek, endOfWeek } from "date-fns";
 import { Link } from "preact-router";
 import Category from "../../components/category";
 import { Star } from "preact-feather";
+import useForceUpdate from "../../hooks/useForceUpdate";
 
 const Home = () => {
-	const [forcedUpdate, setForcedUpdate] = useState(0);
-
-	const forceUpdate = () => {
-		setForcedUpdate((i) => i + 1);
-	};
+	const [forcedUpdate, forceUpdate] = useForceUpdate();
 
 	const categories = useMemo(() => {
 		return category.findMany().sort((a, b) => a.order > b.order);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [forcedUpdate]);
 
 	const createAddEntryHandler = (cat) => (value) => {
@@ -75,18 +72,6 @@ const Home = () => {
 						class={style.category}
 						onChange={createAddEntryHandler(cat)}
 					/>
-					// <Card key={cat.id} class={style.category}>
-					// 	<h2>{cat.name}</h2>
-					// 	<div class={style.time}>
-					// 		{cat.latest
-					// 			? `Last added ${formatRelative(
-					// 					cat.latest.timestamp,
-					// 					new Date(),
-					// 			  )}`
-					// 			: "Not tracked yet"}
-					// 	</div>
-					// 	<button onClick={createAddEntryHandler(cat)}>Track</button>
-					// </Card>
 				))
 			)}
 		</div>

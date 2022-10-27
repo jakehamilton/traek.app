@@ -9,13 +9,7 @@ import Button from "../../components/button";
 import { migrate } from "../../lib/store";
 
 const Settings = () => {
-	// eslint-disable-next-line no-unused-vars
-	const [forcedUpdate, setForcedUpdate] = useState(0);
 	const [isImporting, setIsImporting] = useState(false);
-
-	const forceUpdate = () => {
-		setForcedUpdate((i) => i + 1);
-	};
 
 	const handleClearData = () => {
 		removeAll();

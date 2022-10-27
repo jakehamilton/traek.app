@@ -202,6 +202,7 @@ const CategoryGraph = ({ category: cat, onUpdate }) => {
 				}
 			}
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [cat.type, range, cat.graph.type, timestamp]);
 
 	const options = useMemo(() => {
@@ -315,6 +316,7 @@ const CategoryGraph = ({ category: cat, onUpdate }) => {
 					},
 				};
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [cat.graph.type, range]);
 
 	const label = useMemo(() => {
@@ -448,6 +450,7 @@ const Graph = () => {
 
 	const categories = useMemo(() => {
 		return category.findMany().sort((a, b) => a.order > b.order);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [forcedUpdate]);
 
 	return (

@@ -1,4 +1,3 @@
-import { h } from "preact";
 import {
 	ArrowDownCircle,
 	ArrowRight,
@@ -16,9 +15,11 @@ import { useMemo, useRef, useState } from "preact/hooks";
 import Button from "../../components/button";
 import Card from "../../components/card";
 import IconRadio from "../../components/iconradio";
+import useForceUpdate from "../../hooks/useForceUpdate";
 import { category, CATEGORY_TYPES, GRAPH_TYPES } from "../../lib/store";
 import style from "./style.css";
 
+// @TODO(jakehamilton): Add some more fun placeholders.
 const placeholders = [
 	"Take Out Trash",
 	"Drink Water",
@@ -29,25 +30,23 @@ const placeholders = [
 
 const Edit = () => {
 	const [placeholderUpdate, setPlaceholderUpdate] = useState(0);
-	const [forcedUpdate, setForcedUpdate] = useState(0);
+	const [forcedUpdate, forceUpdate] = useForceUpdate();
 	const [categoryName, setCategoryName] = useState("");
 	const [categoryType, setCategoryType] = useState(CATEGORY_TYPES.Time);
 	const categoryNameInputRef = useRef(null);
 
 	const placeholder = useMemo(() => {
 		return placeholders[Math.floor(Math.random() * placeholders.length)];
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [placeholderUpdate]);
 
 	const categories = useMemo(() => {
 		return category.findMany().sort((a, b) => a.order > b.order);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [forcedUpdate]);
 
 	const changePlaceholder = () => {
 		setPlaceholderUpdate((i) => i + 1);
-	};
-
-	const forceUpdate = () => {
-		setForcedUpdate((i) => i + 1);
 	};
 
 	const handleAddCategory = () => {
