@@ -1,5 +1,7 @@
 # traek.app
 
+[🌎 Open Web App](https://traek.app)
+
 ## CLI Commands
 
 ``` bash
