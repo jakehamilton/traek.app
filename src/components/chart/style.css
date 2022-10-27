@@ -1,0 +1,12 @@
+.Chart {
+	position: relative;
+}
+
+.noData {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-weight: bold;
+	font-size: 1.35rem;
+}

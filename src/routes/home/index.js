@@ -2,9 +2,8 @@ import { h } from "preact";
 import { useMemo, useState } from "preact/hooks";
 import { category, entries, entry } from "../../lib/store";
 import style from "./style.css";
-import { startOfWeek, endOfWeek, formatRelative } from "date-fns";
+import { startOfWeek, endOfWeek } from "date-fns";
 import { Link } from "preact-router";
-import Card from "../../components/card";
 import Category from "../../components/category";
 import { Star } from "preact-feather";
 

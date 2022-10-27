@@ -55,6 +55,7 @@
 		padding-bottom: 0.5rem;
 		height: 64px;
 		background: var(--light-bg);
+		z-index: 100;
 	}
 
 	.header h1 {

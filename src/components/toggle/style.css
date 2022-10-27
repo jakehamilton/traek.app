@@ -20,6 +20,7 @@
 }
 
 .Toggle formset label.active {
+	color: var(--nord6);
 	background: var(--primary);
 }
 

@@ -8,6 +8,7 @@ import Store from "../providers/Store";
 import Home from "../routes/home";
 import Edit from "../routes/edit";
 import Settings from "../routes/settings";
+import Graph from "../routes/graph";
 
 const App = () => (
 	<Store>
@@ -15,6 +16,7 @@ const App = () => (
 			<Header />
 			<Router>
 				<Home path="/" />
+				<Graph path="/graph" />
 				<Edit path="/edit" />
 				<Settings path="/settings" />
 			</Router>

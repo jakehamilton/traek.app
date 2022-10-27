@@ -6,8 +6,10 @@ import { getAll, removeAll, restore } from "../../lib/storage";
 import { saveAs } from "file-saver";
 import { read } from "../../lib/file";
 import Button from "../../components/button";
+import { migrate } from "../../lib/store";
 
 const Settings = () => {
+	// eslint-disable-next-line no-unused-vars
 	const [forcedUpdate, setForcedUpdate] = useState(0);
 	const [isImporting, setIsImporting] = useState(false);
 
@@ -31,11 +33,17 @@ const Settings = () => {
 	};
 
 	const handleImportData = async (event) => {
+		setIsImporting(true);
+
 		const file = event.target.files[0];
 
 		const data = await read(file);
 
 		restore(JSON.parse(data));
+
+		migrate();
+
+		setIsImporting(false);
 	};
 
 	return (

@@ -1,5 +1,7 @@
 import cuid from "cuid";
+import { ja } from "date-fns/locale";
 import invariant from "./invariant";
+import migrations from "./migrations";
 import { get, has, remove, set } from "./storage";
 
 export const tag = (...parts) => {
@@ -18,11 +20,24 @@ export const CATEGORY_TYPES = {
 	Rating: "Rating",
 	YesNo: "YesNo",
 	Text: "Text",
+	Number: "Number",
 };
 
 export const TOGGLE_TYPES = {
 	No: "No",
 	Yes: "Yes",
+};
+
+export const GRAPH_TYPES = {
+	Time: "Time",
+	Pie: "Pie",
+	Bar: "Bar",
+	Score: "Score",
+};
+
+export const GRAPH_FIDELITY = {
+	Day: "Day",
+	Week: "Week",
 };
 
 // let example = {
@@ -63,6 +78,23 @@ export const TOGGLE_TYPES = {
 // 	timestamp: Date,
 // };
 
+export const migrate = () => {
+	const meta = get(tags.STORE_META);
+
+	if (meta.version < migrations.length) {
+		for (let i = meta.version; i < migrations.length; i++) {
+			const migration = migrations[i];
+
+			migration();
+
+			set(tags.STORE_META, {
+				...meta,
+				version: i + 1,
+			});
+		}
+	}
+};
+
 export const initialize = () => {
 	if (!has(tags.STORE_META)) {
 		set(tags.STORE_META, {
@@ -70,11 +102,32 @@ export const initialize = () => {
 			categories: {},
 		});
 	}
-	// @TODO(jakehamilton): migrations / setup
+
+	migrate();
+};
+
+export const getDefaultGraph = (type) => {
+	switch (type) {
+		default:
+		case CATEGORY_TYPES.Time:
+			return GRAPH_TYPES.Time;
+		case CATEGORY_TYPES.Rating:
+			return GRAPH_TYPES.Bar;
+		case CATEGORY_TYPES.YesNo:
+			return GRAPH_TYPES.Time;
+		case CATEGORY_TYPES.Text:
+			return GRAPH_TYPES.Time;
+	}
 };
 
 export const category = {
-	create: ({ id = cuid(), name, type = CATEGORY_TYPES.Time, order } = {}) => {
+	create: ({
+		id = cuid(),
+		name,
+		type = CATEGORY_TYPES.Time,
+		graph = getDefaultGraph(type),
+		order,
+	} = {}) => {
 		invariant(name !== undefined, "category.create() must be called with name");
 
 		const meta = get(tags.STORE_META);
@@ -89,6 +142,10 @@ export const category = {
 			type,
 			order: order ?? Object.keys(meta.categories).length,
 			entries: {},
+			graph: {
+				type: graph,
+				fidelity: GRAPH_FIDELITY.Week,
+			},
 			latest: null,
 		};
 
@@ -139,6 +196,10 @@ export const category = {
 			...data,
 			id: oldData.id,
 			entries: data.entries ?? oldData.entries,
+			graph: {
+				...oldData.graph,
+				...data.graph,
+			},
 		};
 
 		set(path, result);
@@ -320,7 +381,7 @@ export const entries = {
 
 		return null;
 	},
-	findMany: ({ category: categoryId, ids = [], range } = {}) => {
+	findMany: ({ categoryId, ids = [], range } = {}) => {
 		const cat = category.findOne({ id: categoryId });
 
 		if (!cat) {
@@ -457,7 +518,17 @@ export const entry = {
 			return null;
 		}
 
-		const entries = entries.findOne({ category: categoryId, range });
+		if (id !== undefined) {
+			const path = tag(tags.STORE_ENTRY_PREFIX, id);
+
+			if (!has(path)) {
+				return null;
+			}
+
+			return get(path);
+		}
+
+		const entries = entries.findOne({ categoryId, range });
 
 		if (!entries) {
 			return null;
@@ -481,8 +552,8 @@ export const entry = {
 
 		return null;
 	},
-	findMany: ({ category: categoryId, ids, range } = {}) => {
-		const ents = entries.findMany({ category: categoryId, range });
+	findMany: ({ categoryId, ids, range } = {}) => {
+		const ents = entries.findMany({ categoryId, range });
 
 		if (ents.length === 0) {
 			return [];

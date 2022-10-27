@@ -1,0 +1,24 @@
+.Number {
+	width: 100%;
+}
+
+.Number input {
+	width: 100%;
+	font-size: 1rem;
+	background: var(--bg);
+	border: none;
+	border-radius: 1rem;
+	padding: 0.5rem;
+	resize: vertical;
+	color: var(--text);
+}
+
+.Number input::placeholder {
+	color: var(--text);
+	opacity: 0.8;
+}
+
+.Number button {
+	width: 100%;
+	margin-top: 1rem;
+}

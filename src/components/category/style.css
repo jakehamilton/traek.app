@@ -8,6 +8,7 @@
 
 .Category .date {
 	text-align: center;
+	color: var(--light-text);
 }
 
 .Category .content {
@@ -29,6 +30,10 @@
 }
 
 .content .text {
+	width: 100%;
+}
+
+.content .number {
 	width: 100%;
 }
 

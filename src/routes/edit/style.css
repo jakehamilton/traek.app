@@ -42,6 +42,7 @@
 	text-align: center;
 	color: var(--text);
 	margin-top: 0.25rem;
+	margin-bottom: 1rem;
 }
 
 .createCategory .categoryName:focus {
@@ -64,6 +65,7 @@
 
 .types formset {
 	display: flex;
+	margin-top: 1rem;
 }
 
 .types label {
@@ -115,8 +117,17 @@
 }
 
 .category {
-	flex-direction: row;
 	margin-top: 1rem;
+}
+
+.category .top {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+
+.category .bottom {
+	margin-top: 0.5rem;
 }
 
 .category .order {

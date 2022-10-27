@@ -3,6 +3,7 @@ import { formatRelative } from "date-fns";
 import { CATEGORY_TYPES } from "../../lib/store";
 import Button from "../button";
 import Card from "../card";
+import NumberInput from "../number";
 import Rating from "../rating";
 import Text from "../text";
 import Toggle from "../toggle";
@@ -46,6 +47,12 @@ export default function Category({
 						<Text onChange={onChange} />
 					</div>
 				);
+			case CATEGORY_TYPES.Number:
+				return (
+					<div class={style.number}>
+						<NumberInput value={category.latest?.value} onChange={onChange} />
+					</div>
+				);
 		}
 	};
 
@@ -55,9 +62,9 @@ export default function Category({
 			<span class={style.date}>
 				{category.latest
 					? `Last added ${formatRelative(
-							category.latest.timestamp,
-							new Date(),
-					  )}`
+						category.latest.timestamp,
+						new Date(),
+					)}`
 					: "Not tracked yet"}
 			</span>
 			<div class={style.content}>{renderContent()}</div>

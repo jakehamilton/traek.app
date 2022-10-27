@@ -16,7 +16,7 @@ export default function Text({ onChange, class: className, ...props }) {
 			<textarea
 				placeholder="Something important..."
 				value={text}
-				onChange={(e) => setText(e.target.value)}
+				onInput={(e) => setText(e.target.value)}
 			/>
 			<Button onClick={handleSubmit}>Track</Button>
 		</div>
